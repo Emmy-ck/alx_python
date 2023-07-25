@@ -12,7 +12,7 @@ def arguments (argv):
     else:
         print(f"{num_argv} arguments:")
         for i in range(num_argv):
-            print(f"{i + 1}: {argv[1]}")
+            print(f"{i + 1}: {argv[i]}")
 
 if __name__ == "__main__":
     arguments(sys.argv[1:])
