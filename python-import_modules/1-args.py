@@ -5,7 +5,7 @@ def arguments (argv):
     num_argv = len(argv)
     
     if num_argv == 0:
-        print(f"{num_argv} argments.")
+        print(f"{num_argv} arguments.")
     elif num_argv == 1:
         print(f"{num_argv} argument:")
         print(f"{num_argv}: {argv[0]}")
