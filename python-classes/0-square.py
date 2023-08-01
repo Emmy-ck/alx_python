@@ -1,3 +1,8 @@
+"""
+    This is a module that contains various utility functions and classes.
+
+The module provides functionality for handling squares and related operations.
+"""
 class Square:
     """
     This is a class representing a square
@@ -6,17 +11,21 @@ class Square:
     """
     def __init__(self, size):
         self.__size = size
-        """
-        This initializes a new 'Square' instance with one argument.
-        The argument in this instance is 'size' 
+        """This is a class that represents a square
+        
+        Args:
+            int size
+            
+        Returns:
+            bool the size of the operation
         """
     def get_size(self):
         return self.__size
         """
         This function gets the size of the square
         
-        Return:
-        An integer value of the square
+        Returns:
+            An integer value of the square
         """
     def area(self):
         return self.__size ** 2
@@ -24,7 +33,7 @@ class Square:
         """
         This calculated the area of the square
         
-        Return:
-        An integer value of the area of the square
+        Returns:
+            An integer value of the area of the square
         """
         
