@@ -97,5 +97,12 @@ class Rectangle(Base):
         """
         return self.width * self.height
     
+    def display(self):
+        """
+        Prints in the standard output the rectangle instace with character #
+        """
+        for i in range(self.height):
+            print("#" * self.width)
+        
 if __name__ == "__main__":
     pass
