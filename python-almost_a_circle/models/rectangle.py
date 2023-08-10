@@ -114,6 +114,17 @@ class Rectangle(Base):
             str: String representation of the rectangle
         """
         return "[Rectangle] ({}) {}/{} - {}/{}".format(self.id, self.x, self.y, self.width, self.height)
-
+    
+    def update(self, *args):
+        """
+        Update Rectangle attributes using no-kyword argument
+        
+        Args:
+            *args: List of arguments in order
+        """
+        att = ['id', 'width', 'height', 'x', 'y']
+        for i, arg in enumerate(args):
+            setattr(self, att[i], arg)
+        
 if __name__ == "__main__":
     pass
