@@ -117,7 +117,7 @@ class Rectangle(Base):
     
     def update(self, *args, **kwargs):
         """
-        Update Rectangle attributes using no-kyword arguments and keyword arguments
+        Update Rectangle attributes using a combination of no-keyword arguments and keyword arguments
         
         Args:
             *args: List of arguments in order
