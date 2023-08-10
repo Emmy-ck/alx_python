@@ -101,8 +101,10 @@ class Rectangle(Base):
         """
         Prints in the standard output the rectangle instace with character #
         """
+        for i in range(self.y):
+            print()
         for i in range(self.height):
-            print("#" * self.width)
+            print(" " * self.x + "#" * self.width)
             
     def __str__(self):
         """
@@ -112,6 +114,6 @@ class Rectangle(Base):
             str: String representation of the rectangle
         """
         return "[Rectangle] ({}) {}/{} - {}/{}".format(self.id, self.x, self.y, self.width, self.height)
-        
+
 if __name__ == "__main__":
     pass
