@@ -115,16 +115,21 @@ class Rectangle(Base):
         """
         return "[Rectangle] ({}) {}/{} - {}/{}".format(self.id, self.x, self.y, self.width, self.height)
     
-    def update(self, *args):
+    def update(self, *args, **kwargs):
         """
-        Update Rectangle attributes using no-kyword argument
+        Update Rectangle attributes using no-kyword arguments and keyword arguments
         
         Args:
             *args: List of arguments in order
+            **kwargs: Dictionary of key-worded arguments
         """
-        att = ['id', 'width', 'height', 'x', 'y']
-        for i, arg in enumerate(args):
-            setattr(self, att[i], arg)
+        if args:
+            att = ['id', 'width', 'height', 'x', 'y']
+            for i, arg in enumerate(args):
+                setattr(self, att[i], arg)
+        else:
+            for key, value in kwargs.items():
+                setattr(self, key, value)
         
 if __name__ == "__main__":
     pass
