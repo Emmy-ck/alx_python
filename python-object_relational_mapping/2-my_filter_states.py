@@ -45,5 +45,5 @@ if __name__ == "__main__":
     if len(sys.argv) != 5:
         print("Usage: Python script.py <username> <password> <database> <state_search>")
     else:
-        username, password, database, state_search = sys.argv[1], sys.argv[2], sys.argv[3], sys.arg[4]
+        username, password, database, state_search = sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4]
         searched_states(username, password, database, state_search)
