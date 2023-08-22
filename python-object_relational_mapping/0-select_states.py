@@ -3,6 +3,7 @@
 import MySQLdb
 import sys
 
+
 def list_states(username, password, database):
     """Connect to a MySQL server and lists all states in ascending order
 
@@ -22,13 +23,13 @@ def list_states(username, password, database):
         )
         # Create a cursor object to interact with the data
         cursor = db.cursor()
-        
+
         # Excecute the SQL query to get states sorted by states
         cursor.execute("SELECT * FROM states ORDER BY states.id")
-        
+
         # Fetch all rows as list if tuples
         rows = cursor.fetchall()
-        
+
         # reaults
         for row in rows:
             print(row)
@@ -42,7 +43,4 @@ if __name__ == "__main__":
         print("Usage: Python script.py <username> <password> <database>")
     else:
         username, password, database = sys.argv[1], sys.argv[2], sys.argv[3]
-        list_states(username, password, database)
-            
-        
-        
+        list_states(username, password, database)        
