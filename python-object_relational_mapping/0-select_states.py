@@ -1,4 +1,7 @@
+#!/usr/bin/env python3
+
 import MySQLdb
+import sys
 
 def list_states(username, password, database):
     """Connect to a MySQL server and lists all states in ascending order
@@ -10,7 +13,7 @@ def list_states(username, password, database):
     """
     try:
         # Connecting to the MySQL server
-        connection = MySQLdb.connect(
+        db = MySQLdb.connect(
             user = username,
             password = password,
             host = 'localhost',
@@ -18,10 +21,10 @@ def list_states(username, password, database):
             db = database
         )
         # Create a cursor object to interact with the data
-        cursor = connection.cursor()
+        cursor = db.cursor()
         
         # Excecute the SQL query to get states sorted by states
-        cursor.execute("SELEDT ^ FROM states ORDER BY states.id")
+        cursor.execute("SELECT * FROM states ORDER BY states.id")
         
         # Fetch all rows as list if tuples
         rows = cursor.fetchall()
@@ -32,7 +35,7 @@ def list_states(username, password, database):
     except:
         # close the cursor connection
         cursor.close()
-        connection.close()
+        db.close()
 
 if __name__ == "__main__":
     if len(sys.argv) != 4:
