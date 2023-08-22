@@ -4,7 +4,7 @@ import MySQLdb
 import sys
 
 
-def search_states(username, password, database, state_search):
+def search_states(username, password, database, state_name):
     """Connect to a MySQL server and lists all states in ascending order
 
     Args:
@@ -27,7 +27,7 @@ def search_states(username, password, database, state_search):
 
         # Excecute the SQL query to display all values in states table where name matches
         cursor.execute("SELECT * FROM states"
-                       "WHERE BINARY name = '{}'"
+                       "WHERE name LIKE BINARY = '{}'"
                        "ORDER BY states.id ASC").format(state_name)
 
         # Fetch all rows as list if tuples
@@ -47,4 +47,5 @@ if __name__ == "__main__":
     else:
         username, password, database = sys.argv[1], sys.argv[2], sys.argv[3]
         state_name = sys.argv[4]
-        search_states(username, password, database, state_name)
+        search_states(username, password, 
+                      database, state_name)
