@@ -25,7 +25,8 @@ def list_states(username, password, database):
         cursor = db.cursor()
 
         # Excecute the SQL query to list all states starting with N
-        cursor.execute("SELECT * FROM states WHERE BINARY name LIKE 'N%' ORDER BY states.id ASC")
+        cursor.execute("SELECT * FROM states WHERE BINARY name LIKE 'N%'"
+                       "ORDER BY states.id ASC")
 
         # Fetch all rows as list if tuples
         rows = cursor.fetchall()
