@@ -5,7 +5,8 @@ import sys
 
 
 def search_states(username, password, database, state_name):
-    """Connect to a MySQL server and lists all states where name matches the argument
+    """Connect to a MySQL server and lists all states
+    where name matches the argument
 
     Args:
         username (str): MySQL username
@@ -44,8 +45,8 @@ def search_states(username, password, database, state_name):
 
 if __name__ == "__main__":
     if len(sys.argv) != 5:
-        print("Usage: Python script.py <username> <password> <database>")
-        print("<state_name>")
+        print("Usage: Python script.py <username> <password> <database>"
+              "<state_name>")
     else:
         username, password, database = sys.argv[1], sys.argv[2], sys.argv[3]
         state_name = sys.argv[4]
