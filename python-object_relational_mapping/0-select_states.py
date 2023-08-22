@@ -14,11 +14,11 @@ def list_states(username, password, database):
     try:
         # Connecting to the MySQL server
         db = MySQLdb.connect(
-            user = username,
-            password = password,
-            host = 'localhost',
-            port = 3306,
-            db = database
+            user=username,
+            password=password,
+            host='localhost',
+            port=3306,
+            db=database
         )
         # Create a cursor object to interact with the data
         cursor = db.cursor()
