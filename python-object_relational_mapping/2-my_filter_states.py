@@ -4,14 +4,14 @@ import MySQLdb
 import sys
 
 
-def searched_states(username, password, database, state_search):
+def search_states(username, password, database, state_search):
     """Connect to a MySQL server and lists all states in ascending order
 
     Args:
         username (str): MySQL username
         password (str): MySQL password
         database (str): Name of database to conect to
-        state_search (str): States name searched for
+        state_name (str): States name searched for
     """
     try:
         # Connecting to the MySQL server
@@ -28,7 +28,7 @@ def searched_states(username, password, database, state_search):
         # Excecute the SQL query to display all values in states table where name matches
         cursor.execute("SELECT * FROM states"
                        "WHERE BINARY name = '{}'"
-                       "ORDER BY states.id ASC").format(state_search)
+                       "ORDER BY states.id ASC").format(state_name)
 
         # Fetch all rows as list if tuples
         rows = cursor.fetchall()
@@ -45,5 +45,6 @@ if __name__ == "__main__":
     if len(sys.argv) != 5:
         print("Usage: Python script.py <username> <password> <database> <state_search>")
     else:
-        username, password, database, state_search = sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4]
-        searched_states(username, password, database, state_search)
+        username, password, database = sys.argv[1], sys.argv[2], sys.argv[3]
+        state_name = sys.argv[4]
+        search_states(username,password,database,state_name)
