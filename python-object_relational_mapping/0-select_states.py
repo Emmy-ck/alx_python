@@ -43,4 +43,4 @@ if __name__ == "__main__":
         print("Usage: Python script.py <username> <password> <database>")
     else:
         username, password, database = sys.argv[1], sys.argv[2], sys.argv[3]
-        list_states(username, password, database)        
+        list_states(username, password, database)
