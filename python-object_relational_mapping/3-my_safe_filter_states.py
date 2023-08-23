@@ -29,10 +29,10 @@ def search_states(username, password, database, state_name):
         # Excecute a safe query to display all values in states table
         # where name matches argument
         safe = ("SELECT * FROM states "
-                "WHERE BINARY name = %s "
+                "WHERE BINARY name = %(state_key)s "
                 "ORDER BY id ASC")
         # Safe query using parametized query
-        cursor.excecute(safe, (state_name,))
+        cursor.excecute(safe, {'state_key': state_name})
         # Fetch all rows as list if tuples
         rows = cursor.fetchall()
 
