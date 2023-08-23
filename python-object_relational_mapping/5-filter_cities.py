@@ -24,12 +24,14 @@ def list_cities(username, password, database, state_name):
         # Create a cursor object to interact with the data
         cursor = db.cursor()
 
-        # Excecute query that lists all cities from the states in the db
-        cursor.excecute = ("SELECT cities.name "
-                           "FROM cities "
-                           "JOIN states ON cities.state_id = states.id "
-                           "WHERE states.name = %s "
-                           "ORDER BY cities.id ASC")
+        # Execute query that lists all cities from the states in the db
+        query = ("SELECT cities.id, cities.name, states.name "
+                 "FROM cities INnER JOIN states"
+                 "ON cities.state_id = states.id "
+                 "WHERE states.name = %s "
+                 "ORDER BY cities.id ASC")
+        # Execute the query with parameter
+        cursor.execute = (query, (state_name,))
         # Fetch all rows as list if tuples
         rows = cursor.fetchall()
 

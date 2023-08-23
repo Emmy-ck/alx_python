@@ -30,7 +30,7 @@ def list_states(username, password, database):
         # Fetch all rows as list if tuples
         rows = cursor.fetchall()
 
-        # reaults
+        # results
         for row in rows:
             print(row)
     except:
