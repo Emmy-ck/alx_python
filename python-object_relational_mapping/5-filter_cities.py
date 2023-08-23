@@ -38,7 +38,9 @@ def list_cities(username, password, database, state_name):
         # results
         for row in rows:
             print(row)
-    except:
+    except Exception as e:
+        print("Error:", e)
+    finally:
         # close the cursor and the connection
         cursor.close()
         db.close()
