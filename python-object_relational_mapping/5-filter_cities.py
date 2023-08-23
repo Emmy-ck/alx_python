@@ -28,10 +28,10 @@ def list_cities(username, password, database, state_name):
         query = ("SELECT cities.id, cities.name, states.name "
                  "FROM cities INnER JOIN states"
                  "ON cities.state_id = states.id "
-                 "WHERE BiNARY states.name = '{}' "
+                 "WHERE BINARY states.name = %s "
                  "ORDER BY cities.id ASC")
         # Execute the query with parameter
-        cursor.execute = (query, (state_name,))
+        cursor.execute(query, (state_name,))
         # Fetch all rows as list if tuples
         rows = cursor.fetchall()
 
