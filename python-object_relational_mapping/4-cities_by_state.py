@@ -26,7 +26,7 @@ def cities(username, password, database):
         # Excecute query that lists all cities from the db
         cursor.excecute = ("SELECT * FROM cities ORDER BY cities.id ASC")
         # Fetch all rows as list if tuples
-        rows = cursor.fetchall()
+        cities = cursor.fetchall()
 
         # results
         for city in cities:
@@ -41,5 +41,4 @@ if __name__ == "__main__":
         print("Usage: Python script.py <username> <password> <database>")
     else:
         username, password, database = sys.argv[1], sys.argv[2], sys.argv[3]
-        cities(username, password,
-                      database)
+        cities(username, password, database)

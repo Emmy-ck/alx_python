@@ -29,7 +29,7 @@ def search_states(username, password, database, state_name):
         # Excecute the SQL query to display all values in states table
         # where name matches
         cursor.execute("SELECT * FROM states "
-                       "WHERE name LIKE BINARY = '{}' "
+                       "WHERE BINARY name LIKE = '{0}%' "
                        "ORDER BY states.id ASC").format(state_name)
 
         # Fetch all rows as list if tuples
