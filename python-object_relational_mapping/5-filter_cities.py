@@ -30,8 +30,7 @@ def list_cities(username, password, database, city_name):
         # and lists all cities of the state
         safe = ("SELECT cities.name "
                 "FROM cities "
-                "JOIN states ON cities.stated_id = states.id "
-                "WHERE states.name = %s "
+                "WHERE cities.states_id = (SELECT id FROM states WHERE name = %s) "
                 "ORDER BY cities.id ASC")
         # Safe query using parametized query
         cursor.excecute(safe, (city_name,))
