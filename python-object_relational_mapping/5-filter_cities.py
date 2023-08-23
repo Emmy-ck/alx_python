@@ -28,7 +28,7 @@ def list_cities(username, password, database, state_name):
         query = ("SELECT cities.id, cities.name, states.name "
                  "FROM cities INnER JOIN states"
                  "ON cities.state_id = states.id "
-                 "WHERE BNARY states.name = '{}' "
+                 "WHERE BiNARY states.name = '{}' "
                  "ORDER BY cities.id ASC")
         # Execute the query with parameter
         cursor.execute = (query, (state_name,))
