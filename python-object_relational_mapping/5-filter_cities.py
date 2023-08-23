@@ -36,11 +36,11 @@ def list_cities(username, password, database, city_name):
         # Safe query using parametized query
         cursor.excecute(safe, (city_name,))
         # Fetch all rows as list if tuples
-        cities = cursor.fetchall()
+        rows = cursor.fetchall()
 
         # results
-        for city in cities:
-            print(city)
+        for row in rows:
+            print(row)
     except:
         # close the cursor and the connection
         cursor.close()
@@ -54,4 +54,4 @@ if __name__ == "__main__":
         username, password, database = sys.argv[1], sys.argv[2], sys.argv[3]
         city_name = sys.argv[4]
         list_cities(username, password,
-                      database, city_name)
+                    database, city_name)
