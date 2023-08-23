@@ -29,7 +29,7 @@ def search_states(username, password, database, state_name):
         # Excecute a safe query to display all values in states table
         # where name matches argument
         safe = ("SELECT * FROM states "
-                       "WHERE name LIKE BINARY = '{}' "
+                       "WHERE BINARY name = '{}' "
                        "ORDER BY states.id ASC")
         # Safe query using parametized query
         cursor.excecute(safe, (state_name,))
