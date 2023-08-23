@@ -28,7 +28,7 @@ def list_cities(username, password, database, state_name):
         query = ("SELECT cities.id, cities.name, states.name "
                  "FROM cities INnER JOIN states"
                  "ON cities.state_id = states.id "
-                 "WHERE states.name = %s "
+                 "WHERE BNARY states.name = '{}' "
                  "ORDER BY cities.id ASC")
         # Execute the query with parameter
         cursor.execute = (query, (state_name,))
@@ -45,7 +45,8 @@ def list_cities(username, password, database, state_name):
 
 if __name__ == "__main__":
     if len(sys.argv) != 5:
-        print("Usage: Python script.py <username> <password> <database> <state_name>")
+        print("Usage: Python script.py <username> <password> <database> "
+              "<state_name>")
     else:
         username, password, database = sys.argv[1], sys.argv[2], sys.argv[3]
         state_name = sys.argv[4]
