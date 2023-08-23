@@ -26,7 +26,7 @@ def list_cities(username, password, database, state_name):
 
         # Execute query that lists all cities from the states in the db
         query = ("SELECT cities.id, cities.name, states.name "
-                 "FROM cities INnER JOIN states"
+                 "FROM cities INNER JOIN states "
                  "ON cities.state_id = states.id "
                  "WHERE BINARY states.name = %s "
                  "ORDER BY cities.id ASC")
