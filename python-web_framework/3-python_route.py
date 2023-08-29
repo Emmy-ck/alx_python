@@ -32,9 +32,9 @@ def disp_text(text):
 
 """Defining a route for the python URL and associate it with the 'py_text' function."""
 """This dynamic route has a default text value"""
-@app.route('/python/', defaults={'<text>, is cool'})
+@app.route('/python/')
 @app.route('/python/<text>')
-def py_text(text):
+def py_text(text='is cool'):
     """Replaces the underscore with a space"""
     new_text1 = text.replace('_',' ')
     """Returns the new string"""
