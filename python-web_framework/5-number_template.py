@@ -50,10 +50,14 @@ def num(n):
     return m + ' is a number'
 
 """Defining a new route for the number_template URL and associating it with the 'num_temp' function."""
-@app.route('/mumber_template/<int:n>')
-def num_temp(n):
-    """Displays the html page only if the number is an integer"""
-    return render_template('5.number.html', n=n)
+# @app.route('/mumber_template/<int:n>')
+try:
+    @app.route('/number_template/<int:n>')
+    def num_temp(n):
+        """Displays the html page only if the number is an integer"""
+        return render_template('5.number.html', n=n)
+except Exception as e:
+    print("Error:", e)
 
 """Check if the string is being executed directly and not imported"""
 
