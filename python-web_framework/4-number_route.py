@@ -1,6 +1,6 @@
 """Importing the flask web framework"""
 
-from  flask import Flask
+from flask import Flask
 
 """Creating an instance of the Flask class and store it in the 'app' variable."""
 
