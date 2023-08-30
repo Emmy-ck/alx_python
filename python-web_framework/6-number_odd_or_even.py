@@ -70,4 +70,4 @@ def odd_even(n):
 
 if __name__ == "__main__":
     """ Start the Flask development web server with debugging enabled."""
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0', port=5000)
