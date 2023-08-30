@@ -54,7 +54,10 @@ def num(n):
 @app.route('/number_template/<int:n>', strict_slashes=False)
 def number_template(n):
     """Displays the html page only if the number is an integer"""
-    return render_template('5.number.html', number=n)
+    try:
+        return render_template('5.number.html', n=n)
+    except Exception as e:
+        print("Error", e)
 
 """Defining a new route for the number_odd_even URL and associating it with the 'odd_even' function."""
 
@@ -65,10 +68,10 @@ def number_odd_or_even(n):
 
     if n % 2 == 0:
         m = str(n)
-        return render_template('6.number_odd_or_even.html', number=m, odd_even='even')
+        return render_template('6.number_odd_or_even.html', n=m, odd_or_even='even')
     else:
         m = str(n)
-        return render_template('6-number_odd_or_even.html', number=m, odd_even='odd')
+        return render_template('6-number_odd_or_even.html', n=m, oddor_even='odd')
 
 """Check if the string is being executed directly and not imported"""
 
