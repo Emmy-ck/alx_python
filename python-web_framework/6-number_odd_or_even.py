@@ -1,4 +1,4 @@
-"""Importing the flask web framework"""
+"""Importing the flask web framework and render_template from flask"""
 
 from flask import Flask, render_template
 
@@ -50,24 +50,28 @@ def num(n):
     return m + ' is a number'
 
 """Defining a new route for the number_template URL and associating it with the 'num_temp' function."""
-@app.route('/mumber_template/<int:n>')
-def num_temp(n):
+
+@app.route('/number_template/<int:n>', strict_slashes=False)
+def number_template(n):
     """Displays the html page only if the number is an integer"""
-    return render_template('templates/5.number.html', number=n)
+    return render_template('5.number.html', number=n)
 
 """Defining a new route for the number_odd_even URL and associating it with the 'odd_even' function."""
+
 @app.route('/number_odd_even/<int:n>', strict_slashes=False)
 def number_odd_or_even(n):
     """Displays the html page only depending on whether
     the number is odd or even"""
+
     if n % 2 == 0:
         m = str(n)
-        return render_template('templates/6.number_odd_or_even.html', number=m, odd_even='even')
+        return render_template('6.number_odd_or_even.html', number=m, odd_even='even')
     else:
         m = str(n)
-        return render_template('templates/6-number_odd_or_even.html', number=m, odd_even='odd')
+        return render_template('6-number_odd_or_even.html', number=m, odd_even='odd')
+
 """Check if the string is being executed directly and not imported"""
 
 if __name__ == "__main__":
     """ Start the Flask development web server with debugging enabled."""
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    app.run(host='0.0.0.0', port=5000)
