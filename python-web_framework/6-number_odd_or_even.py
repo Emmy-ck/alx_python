@@ -56,8 +56,8 @@ def num_temp(n):
     return render_template('templates/5.number.html', number=n)
 
 """Defining a new route for the number_odd_even URL and associating it with the 'odd_even' function."""
-@app.route('/number_odd_even/<int:n>')
-def odd_even(n):
+@app.route('/number_odd_even/<int:n>', strict_slashes=False)
+def number_odd_or_even(n):
     """Displays the html page only depending on whether
     the number is odd or even"""
     if n % 2 == 0:
