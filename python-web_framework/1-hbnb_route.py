@@ -14,7 +14,14 @@ def hello():
 
     return 'Hello HBNB!'
 
-"""Check if the string is being executed directl and not imported"""
+"""Defining a route for the hbnb URL and associate ti with the 'helloroute' function"""
+
+@app.route('/hbnb')
+def helloroute():
+    """Return the string output as a response when this route is accessed"""
+    return 'HBNB'
+
+"""Check if the string is being executed directly and not imported"""
 
 if __name__ == "__main__":
     """ Start the Flask development web server with debugging enabled."""
