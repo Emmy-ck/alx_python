@@ -8,7 +8,7 @@ def get_employee_data(employee_id):
     
     try:
         # Fetch employee data
-        response_employee = requests.gt(employee_url)
+        response_employee = requests.get(employee_url)
         response_employee.raise_for_status()
         employee_data = response_employee.json()
         
@@ -25,7 +25,7 @@ def get_employee_data(employee_id):
         
 def main():
     if len(sys.argv) != 2:
-        print("Usage: python script.py EMPLOYEE_ID")
+        print("Usage: python script.py <employee_id>")
         sys.exit(1)
         
     employee_id = int(sys.argv[1])
