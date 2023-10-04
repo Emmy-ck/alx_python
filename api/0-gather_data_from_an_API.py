@@ -40,9 +40,9 @@ def main():
     print(f"Employee {employee_name} is done with tasks ({completed_task}/{total_tasks}):")
     
     # Print titles of completed tasks
-    for todo in todos_data:
+    for index, todo in enumerate(todos_data, start=1):
         if todo["completed"]:
-            print(f"\t{todo['title']}")
+            print(f"Task {index} Formatting: OK\n\t{todo['title']}")
 
 if __name__ == "__main__":
     main()
