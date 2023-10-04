@@ -1,3 +1,6 @@
+"""This program fetches employee data and exports it to both CSV and JSON format
+
+"""
 import requests, sys, csv, json
 
 def get_employee_data(employee_id):
