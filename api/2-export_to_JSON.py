@@ -49,7 +49,7 @@ def export_to_json(employee_id, employee_name, todos_data):
         ]
     }
     with open(json_filename, "w") as json_file:
-        json.dump(json_data, json_file, indent=4)
+        json.dump(json_data, json_file)
 
 def main():
     if len(sys.argv) != 2:
