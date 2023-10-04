@@ -27,7 +27,7 @@ def export_to_csv(employee_id, employee_name, todos_data):
     csv_filename = f"{employee_id}.csv"
     
     with open(csv_filename, mode="w", newline="") as csv_file:
-        csv_writer = csv_writer(csv_file)
+        csv_writer = csv.writer(csv_file)
         
         # Write the CSV header
         csv_writer.writerow(["USER_ID", "USERNAME", "TASK_COMPLETED_STATUS", "TASK_TITLE"])
