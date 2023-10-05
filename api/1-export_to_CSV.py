@@ -35,29 +35,29 @@ def export_to_csv(employee_id, employee_name, todos_data):
         # Write the tasks data
         for todo in todos_data:
             csv_writer.writerow([employee_id, employee_name, todo["completed"], todo["title"]])
-        
-def main():
-    if len(sys.argv) != 2:
-        print("Usage: python script.py <employee_id>")
-        sys.exit(1)
-        
-    employee_id = int(sys.argv[1])
+def get_employee_data(employee_id):
     employee_data, todos_data = get_employee_data(employee_id)
     
     # Extract employee information
     employee_name = employee_data.get("name")
     total_tasks = len(todos_data)
-    completed_tasks = sum(1 for todo in todos_data if todo["comapleted"])
+    completed_tasks = sum(1 for todo in todos_data if todo["completed"])
     
     print(f"Employee {employee_name} is done with taks({completed_tasks/(total_tasks)}):")
     
-    for todo in todos_data:
-        if todo["completed"]:
-            print(f"\t {title['title']}\n")
+    # for todo in todos_data:
+    #     if todo["completed"]:
+    #         print(f"\t {title['title']}\n")
     
     # Export data to csv
     export_to_csv(employee_id, employee_name, todos_data)
     print(f"Data exported to {employee_id}.csv")
 
 if __name__ == "__main__":
-    main()
+    if len(sys.argv) != 2:
+        print("Usage: python script.py <employee_id>")
+        sys.exit(1)
+        
+    employee_id = int(sys.argv[1])
+    get_employee_data(employee_id)
+
