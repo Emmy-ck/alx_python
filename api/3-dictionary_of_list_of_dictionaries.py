@@ -43,13 +43,29 @@ def fetch_todos(employee_id):
     except requests.exceptions.HTTPError as e:
         print(f"Error: {e}")
         sys.exit(1)
-        
-def main():
-    all_data = get_employee_data()
-    
-    # Export data to json
-    with open("todo_all_employees.json", "w") as json_file:
-        json.dump(all_data, json_file)
+def print_todo_list_progress(employee_id, employee_name, completed_count, total_tasks, completed_tasks):
+    print(f"Employee {employee_name} is done with tasks({completed_count}/{total_tasks}):")
+    for task in completed_tasks:
+        print(f"\t{task['title']}")        
+# exports the data to JSON format
+def export_to_json(data):
+    with open('todo_all_employees.json', 'w') as json_file:
+        json.dump(data, json_file)
 
+# this block checks if the script is being run directly
+# and takes the employee ID as a command line argument if that's the case
 if __name__ == "__main__":
-    main()
+    if len(sys.argv) != 2:
+        print("Usage: python3 0-gather_data_from_an_API.py <employee_id>")
+        sys.exit(1)
+
+    employee_id = int(sys.argv[1])
+    data = {}
+
+    for id in range(1, employee_id + 1):
+        id, employee_name, completed_count, total_tasks, completed_tasks = get_employee_data(id)
+        employee_data = [{"username": employee_name, "task": task["title"], "completed": task["completed"]} for task in completed_tasks]
+        data[str(id)] = employee_data
+
+    export_to_json(data)
+    print("Data exported to todo_all_employees.json")
