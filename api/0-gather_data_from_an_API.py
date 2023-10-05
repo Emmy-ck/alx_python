@@ -43,7 +43,8 @@ def main():
     for todo in todos_data:
         if todo["completed"]:
             print(f"\t {todo['title']}\n")
-
+        else:
+            print(f"Formatting : Incorrect")
 if __name__ == "__main__":
     main()
     
