@@ -35,7 +35,7 @@ def export_to_csv(employee_id, employee_name, todos_data):
         # Write the tasks data
         for todo in todos_data:
             csv_writer.writerow([employee_id, employee_name, todo["completed"], todo["title"]])
-def get_employee_data(employee_id):
+def employee_info(employee_id):
     employee_data, todos_data = get_employee_data(employee_id)
     
     # Extract employee information
@@ -59,5 +59,5 @@ if __name__ == "__main__":
         sys.exit(1)
         
     employee_id = int(sys.argv[1])
-    get_employee_data(employee_id)
+    employee_info(employee_id)
 
