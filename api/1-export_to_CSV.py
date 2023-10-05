@@ -35,6 +35,7 @@ def export_to_csv(employee_id, employee_name, todos_data):
         # Write the tasks data
         for todo in todos_data:
             csv_writer.writerow([employee_id, employee_name, todo["completed"], todo["title"]])
+            
 def employee_info(employee_id):
     employee_data, todos_data = get_employee_data(employee_id)
     
@@ -43,12 +44,16 @@ def employee_info(employee_id):
     total_tasks = len(todos_data)
     completed_tasks = sum(1 for todo in todos_data if todo["completed"])
     
+    csv_filename = f"{employee_id}.csv"
+    with open(f"{employee_id}.csv", "r") as f:
+        pass
     # for todo in todos_data:
     #     if todo["completed"]:
     #         print(f"\t {title['title']}\n")
     
     # Export data to csv
     export_to_csv(employee_id, employee_name, todos_data)
+
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
