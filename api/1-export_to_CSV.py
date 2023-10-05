@@ -1,4 +1,4 @@
-import requests, sys, csv
+import csv, requests, sys
 
 def get_employee_data(employee_id):
     # URL to fetch employee details
@@ -46,6 +46,14 @@ def main():
     
     # Extract employee information
     employee_name = employee_data.get("name")
+    total_tasks = len(todos_data)
+    completed_tasks = sum(1 for todo in todos_data if todo["comapleted"])
+    
+    print(f"Employee {employee_name} is done with taks({completed_tasks/(total_tasks)}):")
+    
+    for todo in todos_data:
+        if todo["completed"]:
+            print(f"\t {title['title']}\n")
     
     # Export data to csv
     export_to_csv(employee_id, employee_name, todos_data)
