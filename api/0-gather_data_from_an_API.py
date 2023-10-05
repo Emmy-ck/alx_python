@@ -42,9 +42,8 @@ def main():
     # Print titles of completed tasks
     for todo in todos_data:
         if todo["completed"]:
-            print(f"\t {todo['title']}\n")
-        else:
-            print(f"Formatting : Incorrect")
+            print(f"\t{todo['title']}\n")
+
 if __name__ == "__main__":
     main()
     
