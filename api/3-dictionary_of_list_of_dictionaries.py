@@ -18,21 +18,34 @@ def get_employee_data(employee_id):
             employee_name = employee["name"]
             
             # Fetch to do list
-            _, todos_data = get_employee_data(employee_id)
+            _, todos_data = fetch_todos(employee_id)
             
             # Extract completed tasks for the employee
             completed_tasks = [{"username": employee_name, "task": todo["title"], "completed": todo["completed"]} for todo in todos_data if todo["completed"]]
             
             all_data[employee_id] = completed_tasks
             
-            return all_data
+        return all_data
+    except requests.exceptions.HTTPError as e:
+        print(f"Error: {e}")
+        sys.exit(1)
+        
+def fetch_todos(employee_id):
+    # URL to fetch employee's to do list
+    todos_url = f"https://jsonplaceholder.typicode.com/users/{employee_id}/todos"
     
+    try:
+        response_todos = requests.get(todos_url)
+        response_todos.raise_for_status()
+        todos_data = response_todos.json()
+        
+        return todos_data
     except requests.exceptions.HTTPError as e:
         print(f"Error: {e}")
         sys.exit(1)
         
 def main():
-    all_data = get_employee_data(employee_id)
+    all_data = get_employee_data()
     
     # Export data to json
     with open("todo_all_employees.json", "w") as json_file:

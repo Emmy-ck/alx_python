@@ -37,12 +37,12 @@ def main():
     completed_tasks = sum(1 for todo in todos_data if todo["completed"])
     
     # Print employee TO DO list progress
-    print(f"Employee {employee_name} is done with tasks ({completed_tasks}/{total_tasks}):")
+    print(f"Employee {employee_name} is done with tasks({completed_tasks}/{total_tasks}):")
     
     # Print titles of completed tasks
-    for index, todo in enumerate(todos_data, start=1):
+    for todo in todos_data:
         if todo["completed"]:
-            print(f"Task {index} Formatting: OK\n\t{todo['title']}")
+            print(f"\t{task['title']}")
 
 if __name__ == "__main__":
     main()
