@@ -32,7 +32,7 @@ def get_employee_data(employee_id):
         sys.exit(1)
         
 def main():
-    all_data = get_employee_data()
+    all_data = get_employee_data(employee_id)
     
     # Export data to json
     with open("todo_all_employees.json", "w") as json_file:
