@@ -43,15 +43,12 @@ def employee_info(employee_id):
     total_tasks = len(todos_data)
     completed_tasks = sum(1 for todo in todos_data if todo["completed"])
     
-    print(f"Employee {employee_name} is done with taks({completed_tasks/(total_tasks)}):")
-    
     # for todo in todos_data:
     #     if todo["completed"]:
     #         print(f"\t {title['title']}\n")
     
     # Export data to csv
     export_to_csv(employee_id, employee_name, todos_data)
-    print(f"Data exported to {employee_id}.csv")
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
