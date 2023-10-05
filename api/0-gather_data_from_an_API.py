@@ -34,7 +34,8 @@ def main():
     # Extract employee information
     employee_name = employee_data.get("name")
     total_tasks = len(todos_data)
-    completed_tasks = sum(1 for todo in todos_data if todo["completed"])
+    completed_tasks = [todo for todo in todos_data if todo["completed"]]
+    
     
     # Print employee TO DO list progress
     print(f"Employee {employee_name} is done with tasks({completed_tasks}/{total_tasks}):")
@@ -42,7 +43,7 @@ def main():
     # Print titles of completed tasks
     for todo in todos_data:
         if todo["completed"]:
-            print(f"\t{task['title']}")
+            print(f"\t{todo['title']}")
 
 if __name__ == "__main__":
     main()
