@@ -1,7 +1,7 @@
 """This program fetches employee data and exports it to both CSV and JSON format
 
 """
-import requests, sys, csv, json
+import csv, json, requests, sys
 
 def get_employee_data(employee_id):
     # URL to fetch employee details
