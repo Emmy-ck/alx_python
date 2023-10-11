@@ -33,9 +33,9 @@ def disp_text(text):
 
 """Defining a route for the python URL and associate it with the 'py_text' function."""
 """This dynamic route has a default text value"""
-@app.route('/python/')
+@app.route('/python/', defaults={'text': 'is cool'})
 @app.route('/python/<text>')
-def py_text(text='is cool'):
+def py_text(text):
     """Replaces the underscore with a space"""
     new_text1 = text.replace('_',' ')
     """Returns the new string"""
@@ -53,4 +53,4 @@ def num(n):
 
 if __name__ == "__main__":
     """ Start the Flask development web server with debugging enabled."""
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=True, strict_slashes=False)
