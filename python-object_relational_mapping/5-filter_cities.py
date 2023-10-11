@@ -25,7 +25,7 @@ def list_cities(username, password, database, state_name):
         cursor = db.cursor()
 
         # Execute query that lists all cities from the states in the db
-        query = ("SELECT cities.id, cities.name, states.name "
+        query = ("SELECT cities.name "
                  "FROM cities "
                  "JOIN states ON cities.state_id = states.id "
                  "WHERE states.name = %s "
@@ -34,10 +34,13 @@ def list_cities(username, password, database, state_name):
         cursor.execute(query, (state_name,))
         # Fetch all rows as list if tuples
         rows = cursor.fetchall()
-
-        # results
-        for row in rows:
-            print(row)
+        
+        # Extract city names and join them
+        city_names = [row[0] for row in rows]
+        cities_string = ", ".join(city_names)
+        
+        # Print the results without IDs or state names
+        print(cities_string)
 
     except MySQLdb.Error as e:
         print("Error {}: {}".format(e.args[0], e.args[1]))
