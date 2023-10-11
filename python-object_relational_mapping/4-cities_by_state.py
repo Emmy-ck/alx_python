@@ -31,10 +31,13 @@ def cities(username, password, database):
         # results
         for city in cities:
             print(city)
-    except:
+
         # close the cursor and the connection
         cursor.close()
         db.close()
+        
+    except MySQLdb.Error as e:
+        print("Error:", e)
 
 if __name__ == "__main__":
     if len(sys.argv) != 4:
