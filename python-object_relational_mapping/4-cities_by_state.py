@@ -15,7 +15,7 @@ def cities(username, password, database):
         # Connecting to the MySQL server
         db = MySQLdb.connect(
             user=username,
-            password=password,
+            passwd=password,
             host='localhost',
             port=3306,
             db=database
@@ -24,7 +24,7 @@ def cities(username, password, database):
         cursor = db.cursor()
 
         # Excecute query that lists all cities from the db
-        cursor.excecute = ("SELECT * FROM cities ORDER BY cities.id ASC")
+        cursor.execute = ("SELECT * FROM cities ORDER BY cities.id ASC")
         # Fetch all rows as list if tuples
         cities = cursor.fetchall()
 
