@@ -53,7 +53,7 @@ def num(n):
 @app.route('/number_template/<int:n>', strict_slashes=False)
 def number_template(n):
     """Displays the html page only if the number is an integer"""
-    return render_template('5-number.html', number=n)
+    return render_template('6-number_odd_or_even.html', number=n)
 
 """Check if the string is being executed directly and not imported"""
 
