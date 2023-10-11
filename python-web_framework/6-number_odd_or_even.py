@@ -46,7 +46,7 @@ def display5(n):
 def number_template(n):
     """Displays the HTML page only if the number is an integer"""
     try:
-        return render_template('5.number.html', n=n)
+        return render_template('6-number_odd_or_even.html', n=n)
     except Exception as e:
         print("Error", e)
 
