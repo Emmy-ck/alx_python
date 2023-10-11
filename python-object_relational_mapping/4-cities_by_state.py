@@ -2,15 +2,15 @@ import MySQLdb
 import sys
 
 
-def cities(username, password, database):
-    """Connect to a MySQL server and lists all states
-    where name matches the argument
+if __name__ == "__main__":
+    # Check if all 3 arguments are provided
+    if len(sys.argv) != 4:
+        print("Usage: {} username password database_name".format(sys.argv[0]))
+        sys.exit(1)
 
-    Args:
-        username (str): MySQL username
-        password (str): MySQL password
-        database (str): Name of database to conect to
-    """
+    username = sys.argv[1]
+    password = sys.argv[2]
+    database = sys.argv[3]
     try:
         # Connecting to the MySQL server
         db = MySQLdb.connect(
@@ -22,26 +22,19 @@ def cities(username, password, database):
         )
         # Create a cursor object to interact with the data
         cursor = db.cursor()
-
-        # Excecute query that lists all cities from the db
-        cursor.execute("SELECT * FROM cities ORDER BY cities.id ASC")
-        # Fetch all rows as list if tuples
-        cities = cursor.fetchall()
-
-        # results
-        for city in cities:
-            print(city)
-
-        # close the cursor and the connection
-        cursor.close()
-        db.close()
         
+        query = "SELECT cities.id, cities.name, states.name FROM cities LEFT JOIN states ON states.id = cities.state_id ORDER BY cities.id ASC"
+        cursor.execute(query)
+        
+        # Fetch all rows as list if tuples
+        results = cursor.fetchall()
+        for row in results:
+            print("({}, '{}', '{}')".format(row[0], row[1], row[2]))
     except MySQLdb.Error as e:
-        print("Error:", e)
+        print("Error {}: {}".format(e.args[0], e.args[1]))
+        sys.exit(1)
 
-if __name__ == "__main__":
-    if len(sys.argv) != 4:
-        print("Usage: Python script.py <username> <password> <database>")
-    else:
-        username, password, database = sys.argv[1], sys.argv[2], sys.argv[3]
-        cities(username, password, database)
+    finally:
+        # close the cursor and the connection
+        if db:
+            db.close()
