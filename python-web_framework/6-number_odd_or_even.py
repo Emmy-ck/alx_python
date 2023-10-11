@@ -1,63 +1,47 @@
-#!/usr/bin/python3
-"""
-This is a script that directs a user to the home page of a site.
-"""
+# Import the Flask module
 from flask import Flask, render_template
 
+# Initialize the Flask module
 app = Flask(__name__)
 
-@app.route('/', strict_slashes=False)
-def display():
-    """
-    This function directs visitors to the homepage.
-    """
+# Define the route for the root URL ('/')
+@app.route("/", strict_slashes=False)
+def main():
     return "Hello HBNB!"
 
-@app.route('/hbnb')
-def display2():
-    """
-    This function directs visitors to the HBNB page.
-    """
+# Define the route for '/hbnb'
+@app.route("/hbnb", strict_slashes=False)
+def first():
     return "HBNB"
 
-@app.route('/c/<good>', strict_slashes=False)
-def display3(good):
-    """
-    This function returns the values of a dynamic route using flask!
-    """
-    good = good.replace('_', " ")
-    return "C {}".format((good))
+# Define the route for '/c/<text>'
+@app.route("/c/<text>", strict_slashes=False)
+def second(text):
+    modified = "C " + text.replace('_', ' ')
+    return modified
 
-@app.route('/python/<text>', strict_slashes=False)
-@app.route('/python/', defaults={'text': 'is_cool'})
-def display4(text):
-    """
-    This function displays a default text.
-    """
-    text = text.replace('_', " ")
-    return "Python {}".format((text))
+# Define the route for '/python/' and '/python/<text>'
+@app.route("/python/", strict_slashes=False)
+@app.route("/python/<text>", strict_slashes=False)
+def third(text="is cool"):
+    modified = "Python " + text.replace('_', ' ')
+    return modified
 
-@app.route('/number/<int:n>', strict_slashes=False)
-def display5(n):
-    if isinstance(n, int):
-        return "{} is a number".format(n)
+# Define the route for '/number/<n>'
+@app.route("/number/<int:n>", strict_slashes=False)
+def integer_check(n):
+    return f"{n} is a number"
 
-@app.route('/number_template/<int:n>', strict_slashes=False)
-def number_template(n):
-    """Displays the HTML page only if the number is an integer"""
-    try:
-        return render_template('6-number_odd_or_even.html', odd_or_even='even' if n % 2 == 0 else 'odd')
-    except Exception as e:
-        print("Error", e)
+# Define the route for '/number_template/<n>'
+@app.route("/number_template/<int:n>", strict_slashes=False)
+def display_page(n):
+    return render_template('5-number.html', number=n)
 
-@app.route('/number_odd_even/<int:n>', strict_slashes=False)
-def number_odd_or_even(n):
-    """Displays the HTML page only depending on whether the number is odd or even"""
-    if isinstance(n, int):
-        if n % 2 == 0:
-            return render_template('6-number_odd_or_even.html', n=n, odd_or_even='even')
-        else:
-            return render_template('6-number_odd_or_even.html', n=n, odd_or_even='odd')
+# Define the route for '/number_odd_or_even/<n>'
+@app.route("/number_odd_or_even/<int:n>", strict_slashes=False)
+def odd_or_even(n):
+    return render_template('6-number_odd_or_even.html', number=n)
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+if __name__ == "__main":
+    app.run(host="0.0.0.0", port=5000)
+    
