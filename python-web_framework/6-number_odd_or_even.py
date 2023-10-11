@@ -1,4 +1,7 @@
-# Import the Flask module
+#!/usr/bin/python3
+"""
+This is a script that directs a user to the home page of a site.
+"""
 from flask import Flask, render_template
 
 # Initialize the Flask module
@@ -7,6 +10,9 @@ app = Flask(__name__)
 # Define the route for the root URL ('/')
 @app.route("/", strict_slashes=False)
 def main():
+    """
+    This function directs visitors to the homepage.
+    """
     return "Hello HBNB!"
 
 # Define the route for '/hbnb'
