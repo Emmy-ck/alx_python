@@ -16,7 +16,7 @@ def list_cities(username, password, database, state_name):
         # Connecting to the MySQL server
         db = MySQLdb.connect(
             user=username,
-            password=password,
+            passwd=password,
             host='localhost',
             port=3306,
             db=database
@@ -26,9 +26,9 @@ def list_cities(username, password, database, state_name):
 
         # Execute query that lists all cities from the states in the db
         query = ("SELECT cities.id, cities.name, states.name "
-                 "FROM cities INNER JOIN states "
-                 "ON cities.state_id = states.id "
-                 "WHERE BINARY states.name = %s "
+                 "FROM cities "
+                 "JOIN states ON cities.state_id = states.id "
+                 "WHERE states.name = %s "
                  "ORDER BY cities.id ASC")
         # Execute the query with parameter
         cursor.execute(query, (state_name,))
@@ -38,8 +38,10 @@ def list_cities(username, password, database, state_name):
         # results
         for row in rows:
             print(row)
-    except Exception as e:
-        print("Error:", e)
+
+    except MySQLdb.Error as e:
+        print("Error {}: {}".format(e.args[0], e.args[1]))
+
     finally:
         # close the cursor and the connection
         cursor.close()
