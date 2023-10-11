@@ -24,7 +24,7 @@ def cities(username, password, database):
         cursor = db.cursor()
 
         # Excecute query that lists all cities from the db
-        cursor.execute = ("SELECT * FROM cities ORDER BY cities.id ASC")
+        cursor.execute("SELECT * FROM cities ORDER BY cities.id ASC")
         # Fetch all rows as list if tuples
         cities = cursor.fetchall()
 
