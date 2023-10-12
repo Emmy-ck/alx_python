@@ -12,19 +12,18 @@ else:
 url = "http://0.0.0.0:5000/search_user"
 data = {'q': letter}
 
-# Send a POST request to the specified URL
-response = requests.post(url, data=data)
-# Try to parse the response as JSON
 try:
-    response_data = response.json()
-    
-    if isinstance(response_data, list) and len(response_data) > 0:
-        user = response_data[0]
-        user_id = user.get("id")
-        user_name = user.get("name")
-        print(f"[{user_id}] {user_name}")
-    else:
-        print("No result")
-except ValueError:
-    print("Not a valid JSON")
-    
+    response = requests.post(url, data=data)
+    response.raise_for_status()  # Check for request success
+
+    try:
+        json_data = response.json()
+        if json_data:
+            print("[{}] {}".format(json_data['id'], json_data['name']))
+        else:
+            print("No result")
+    except ValueError:
+        print("Not a valid JSON")
+
+except requests.exceptions.RequestException as e:
+    print("Request error:", e)
