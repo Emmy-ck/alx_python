@@ -18,7 +18,7 @@ response = requests.post(url, data=data)
 try:
     response_data = response.json()
     
-    if response_data:
+    if isinstance(response_data, list) and len(response_data) > 0:
         user = response_data[0]
         user_id = user.get("id")
         user_name = user.get("name")
