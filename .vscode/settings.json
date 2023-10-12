@@ -1,0 +1,4 @@
+{
+    "python.terminal.activateEnvInCurrentTerminal": false,
+    "terminal.integrated.automationProfile.windows": {}
+}
