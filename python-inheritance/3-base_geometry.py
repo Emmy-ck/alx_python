@@ -1,7 +1,5 @@
 """Empty class BaseGeometry
 """
-from collections.abc import Iterable
-
 
 class BaseGeometry:
     """Empty class that serves as the base for geometry-related classes
