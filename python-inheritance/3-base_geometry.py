@@ -6,8 +6,9 @@ class BaseGeometry:
         pass
 
     def __dir__(self):
-        attributes = super().__dir__()
-        used_attr = [att for att in attributes if att != "__init_subclass__"]
-        return used_attr
+        return [att for att in dir(type(self)) if att != "__init_subclass__"]
+    
+    def __class__(self):
+        return type(self)
 
 BaseGeometry.__dir__ = lambda self: [att for att in super(BaseGeometry, self).__dir__() if att != "__init_subclass__"]
