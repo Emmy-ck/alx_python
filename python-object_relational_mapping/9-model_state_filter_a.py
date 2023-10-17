@@ -23,7 +23,7 @@ if __name__ == "__main__":
 
     # Query and display State objects with letter 'a' sorted by states.id
     states = session.query(State).filter(State.name.like
-            ('%a%')).order_by(State.id).all()
+                                        ('%a%')).order_by(State.id).all()
 
     for state in states:
         print("{}: {}".format(state.id, state.name))
