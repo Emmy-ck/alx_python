@@ -21,6 +21,6 @@ class BaseGeometryWithArea(BaseGeometry):
 bg = BaseGeometryWithArea()
 
 # try:
-#     print(bg.area())
+print(bg.area())
 # except Exception as e:
 #     print("[{}] {}".format(e.__class__.__name__, e))
