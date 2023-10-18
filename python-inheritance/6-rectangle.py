@@ -17,3 +17,17 @@ class Rectangle(BaseGeometry):
         self.__height = height
         super().integer_validator("width", self.__width)
         super().integer_validator("height", self.__height)
+
+if __name__ == "__main__":
+
+    r = Rectangle(4, 5)
+    print(r)
+    print(dir(r))
+    try:
+        print(r.width)
+    except AttributeError as e:
+        print(e)
+    try:
+        r.integer_validator("height", "test")
+    except TypeError as e:
+        print(e)
