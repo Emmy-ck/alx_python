@@ -34,17 +34,6 @@ def export_to_csv(employee_id, employee_data, todos_data):
         # Write the task data for the employee
         for todo in todos_data:
             csvwriter.writerow([employee_id, employee_data.get("name"), str(todo["completed"]), todo["title"]])
-  
-def read_csv_file(employee_id):
-    filename = f"{employee_id}.csv"
-
-    try:
-        with open(filename, 'r') as f:
-            for line in f:
-                print(line, end='')
-                
-    except FileNotFoundError:
-        print(f"File {filename} not found.")
 
 def main():
     if len(sys.argv) != 2:
@@ -57,8 +46,6 @@ def main():
     # Export to CSV
     export_to_csv(employee_id, employee_data, todos_data)
     print(f"Data exported to {employee_id}.csv")
-    
-    read_csv_file(employee_id)
 
 if __name__ == "__main__":
     main()
