@@ -16,7 +16,7 @@ BaseGeometry.__dir__ = lambda self: [att for att in super(BaseGeometry, self).__
 
 class BaseGeometryWithArea(BaseGeometry):
     def area(self):
-        raise Exception("area() is not implemented")
+        raise Exception(f"{[Exception]} area() is not implemented")
 
 bg = BaseGeometryWithArea()
 
