@@ -1,5 +1,6 @@
 #!/usr/bin/python3
-
+"""Class BaseGeometry with public instance area
+"""
 class BaseGeometry:
     def area(self):
         """
