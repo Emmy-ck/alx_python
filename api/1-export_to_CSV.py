@@ -22,21 +22,26 @@ def get_employee_data(employee_id):
     except requests.exceptions.HTTPError as e:
         print(f"Error: {e}")
         sys.exit(1)
-
-def export_to_csv(employee_id, employee_name, todos_data):
-    csv_filename = f"{employee_id}.csv"
+      
+def export_to_csv(employee_id, employee_data, todos_data):
+    filename = f"{employee_id}.csv"
     
-    with open(csv_filename, mode="w", newline="") as csv_file:
-        csv_writer = csv.writer(csv_file)
+    with open(filename, 'w', newline='') as csvfile:
+        csvwriter = csv.writer(csvfile)
         
-        # Write the CSV header
-        csv_writer.writerow(["USER_ID", "USERNAME", "TASK_COMPLETED_STATUS", "TASK_TITLE"])
+        # Write the header row
+        csvwriter.writerow(["USER_ID", "USERNAME", "TASK_COMPLETED_STATUS", "TASK_TITLE"])
         
-        # Write the tasks data
+        # Write the task data for the employee
         for todo in todos_data:
-            csv_writer.writerow([employee_id, employee_name, todo["completed"], todo["title"]])
-            
-def employee_info(employee_id):
+            csvwriter.writerow([employee_id, employee_data.get("name"), str(todo["completed"]), todo["title"]])
+  
+def main():
+    if len(sys.argv) != 2:
+        print("Usage: python script.py <employee_id>")
+        sys.exit(1)
+        
+    employee_id = int(sys.argv[1])
     employee_data, todos_data = get_employee_data(employee_id)
     
     # Extract employee information
@@ -44,22 +49,17 @@ def employee_info(employee_id):
     total_tasks = len(todos_data)
     completed_tasks = sum(1 for todo in todos_data if todo["completed"])
     
-    csv_filename = f"{employee_id}.csv"
-    with open(f"{employee_id}.csv", "r") as f:
-        pass
-    # for todo in todos_data:
-    #     if todo["completed"]:
-    #         print(f"\t {title['title']}\n")
+    # Print employee TO DO list progress
+    print(f"Employee {employee_name} is done with tasks({completed_tasks}/{total_tasks}):")
     
-    # Export data to csv
-    export_to_csv(employee_id, employee_name, todos_data)
-
+    # Print titles of completed tasks
+    for todo in todos_data:
+        if todo["completed"]:
+            print(f"\t {todo['title']}")
+            
+    # Export to CSV
+    export_to_csv(employee_id, employee_data, todos_data)
+    print(f"Data exported to {employee_id}.csv")
 
 if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        print("Usage: python script.py <employee_id>")
-        sys.exit(1)
-        
-    employee_id = int(sys.argv[1])
-    employee_info(employee_id)
-
+    main()
