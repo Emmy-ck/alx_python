@@ -1,5 +1,6 @@
-"""Rectangle class that inherits from basegeometry
+"""Class BaseGeometry that inherits from rectangle class
 """
+
 BaseGeometry = __import__('6-rectangle').BaseGeometry
 
 class Rectangle(BaseGeometry):
@@ -10,8 +11,8 @@ class Rectangle(BaseGeometry):
         width (int): The width of the rectangle.
         height (int): The height of the rectangle.
     """
+
     def __init__(self, width, height):
-        super().__init()  # Call the constructor of the base class (BaseGeometry)
         self.__width = width
         self.__height = height
         self.integer_validator("width", self.__width)
