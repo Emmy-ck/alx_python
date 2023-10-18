@@ -27,11 +27,11 @@ def export_to_csv(employee_id, employee_data, todos_data):
     filename = f"{employee_id}.csv"
     
     with open(filename, 'w', newline='') as csvfile:
-        csvwriter = csv.writer(csvfile)
+        csvwriter = csv.writer(csvfile, quoting=csv.QUOTE_ALL)
         
         # Write the task data for the employee
         for todo in todos_data:
-            csvwriter.writerow([str(employee_id), f'"{employee_data.get("name")}"', str(todo["completed"]), f'"{todo["title"]}"'])
+            csvwriter.writerow([employee_id, employee_data.get("name"), str(todo["completed"]), todo["title"]])
   
 def main():
     if len(sys.argv) != 2:
