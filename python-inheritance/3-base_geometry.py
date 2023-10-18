@@ -1,4 +1,3 @@
-#!/usr/bin/python3
 """
 Empty class definition for BaseGeometry.
 """
