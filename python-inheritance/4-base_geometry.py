@@ -2,6 +2,8 @@
 """Class BaseGeometry with public instance area
 """
 class BaseGeometry:
+    """Public instance area
+    """
     def area(self):
         """
         Public instance method to calculate the area of the geometry.
