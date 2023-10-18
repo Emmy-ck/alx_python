@@ -27,7 +27,7 @@ def export_to_csv(employee_id, employee_data, todos_data):
     filename = f"{employee_id}.csv"
     
     with open(filename, 'w', newline='') as csvfile:
-        csvwriter = csv.writer(csvfile, quoting=csv.QUOTE_ALL)
+        csvwriter = csv.writer(csvfile)
         
         # Write the task data for the employee
         for todo in todos_data:
