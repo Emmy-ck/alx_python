@@ -10,7 +10,7 @@ def main():
     employee_url = f'https://jsonplaceholder.typicode.com/users/{employee_id}'
     employee_response = requests.get(employee_url)
     if employee_response.status_code != 200:
-        print(f"User with ID {employee_id} not found.")
+        print(f"Employee with ID {employee_id} not found.")
         return
     employee_data = employee_response.json()
 
@@ -30,7 +30,7 @@ def main():
             csv_writer.writerow(
                 [employee_id, employee_data['username'], task['completed'], task['title']])
 
-    print(f"Data exported to {csv_file}.")
+    # print(f"Data exported to {csv_file}.")
 
 if __name__ == "__main__":
     main()
