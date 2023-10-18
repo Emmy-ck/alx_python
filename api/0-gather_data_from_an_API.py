@@ -7,10 +7,10 @@ def main():
         print("Usage: python script.py <employee_id>")
         sys.exit(1)
 
-    employee_id = int(sys.argv[1]
+    employee_id = int(sys.argv[1])
 
     # Fetch employee data
-    employee_url = f"https://jsonplaceholder.typicode.com/users/{employee_id}"
+    employee_url = "https://jsonplaceholder.typicode.com/users/{}".format(employee_id)
     response_employee = requests.get(employee_url)
     
     if response_employee.status_code != 200:
