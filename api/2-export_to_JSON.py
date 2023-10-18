@@ -1,33 +1,33 @@
-#!/usr/bin/python3
+"""This program fetches employee data and exports it to both CSV and JSON format
+
 """
-Function to get employee information using the id
-"""
+
 import json
 import requests
 import sys
 
 if __name__ == '__main__':
-    user_id = sys.argv[1]
+    employee_id = sys.argv[1]
 
     # getting user
-    user_url = 'https://jsonplaceholder.typicode.com/users/{}'.format(user_id)
-    user = requests.get(user_url)
-    user_data = user.json()
+    employee_url = 'https://jsonplaceholder.typicode.com/users/{}'.format(employee_id)
+    employee = requests.get(employee_url)
+    employee_data = employee.json()
 
     # getting todos
-    todo_url = 'https://jsonplaceholder.typicode.com/users/{}/todos'.format(user_id)
+    todo_url = 'https://jsonplaceholder.typicode.com/users/{}/todos'.format(employee_id)
     todos = requests.get(todo_url)
     todos_data = todos.json()
 
     # exporting to a json
-    json_file = "{}.json".format(user_id)
+    json_file = "{}.json".format(employee_id)
     
-    user_info = {
-        f"{user_id}": [
+    employee_info = {
+        f"{employee_id}": [
             {
                 "task": items['title'],
                 "completed": items['completed'],
-                "username": user_data['username'],
+                "username": employee_data['username'],
             }
 
             for items in todos_data
@@ -36,4 +36,4 @@ if __name__ == '__main__':
 
     # write data to json file
     with open(json_file, 'w') as json_files:
-        json.dump(user_info, json_files)
+        json.dump(employee_info, json_files)
