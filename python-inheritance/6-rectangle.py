@@ -19,5 +19,6 @@ class Rectangle(BaseGeometry):
         self.integer_validator("width", self.__width)
         self.integer_validator("height", self.__height)
         
-    def __dir__(self):
-        return [attr for attr in dir(type(self)) if attr != '__init_subclass__']
+    def __str__(self):
+        return f"[Rectangle] {self.__width}/{self.__height}"
+        
