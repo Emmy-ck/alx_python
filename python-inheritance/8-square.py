@@ -11,6 +11,8 @@ class Square(Rectangle):
         size (int): The side length of the square.
     """
     def __init__(self, size):
+        if not isinstance(size, int):
+            raise TypeError("size must be an integer")
 
         super().__init__(size, size)  # Call the constructor of the base class (Rectangle)
         self.__width = size # set private width attribute
