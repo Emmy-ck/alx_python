@@ -24,6 +24,13 @@ class Square(Rectangle):
             int: The area of the square.
         """
         return self.__width * self.__width  # Since it's a square, width and height are the same
+    def __str__(self):
+        return f"[Square] {self.__size}/{self.__size}"
     def __dir__(self):
         # Exclude '__init_subclass__' from the list of attributes
         return [attribute for attribute in super().__dir() if attribute != '__init_subclass__']
+
+if __name__ == "__main__":
+    s = Square(4)
+    print(s)
+    print(issubclass(Square, Rectangle))
