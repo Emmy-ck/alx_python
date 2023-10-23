@@ -24,10 +24,5 @@ class Square(Rectangle):
             int: The area of the square.
         """
         return self.__width * self.__width  # Since it's a square, width and height are the same
-    def __str__(self):
-        return f"[Retangle] {self.__width}/{self.__width}"
-    
-    # def __dir__(self):
-    #     return [attribute for attribute in super().__dir__() if attribute != '__init_subclass__'] + ['integer_validator']
-    def __dir__(self):
-        return [attr for attr in dir(type(self))] #if attr != '__init_subclass__']
+    # def __str__(self):
+    #     return f"[Retangle] {self.__width}/{self.__width}"
