@@ -23,7 +23,7 @@ class Square(Rectangle):
         """
         return self.__width * self.__width  # Since it's a square, width and height are the same
     def __str__(self):
-        return f"[Retangle] {self._size}/{self._size}"
+        return f"[Retangle] {self.__size}/{self.__size}"
     def __dir__(cls):
          return [attribute for attribute in
                 super().__dir__() if attribute != '__init_subclass__']
