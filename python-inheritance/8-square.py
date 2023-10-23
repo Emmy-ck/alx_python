@@ -29,5 +29,5 @@ class Square(Rectangle):
     
     # def __dir__(self):
     #     return [attribute for attribute in super().__dir__() if attribute != '__init_subclass__'] + ['integer_validator']
-    # def __dir__(self):
-    #     return [attr for attr in dir(type(self)) if attr != '__init_subclass__']
+    def __dir__(self):
+        return [attr for attr in dir(type(self))] #if attr != '__init_subclass__']
