@@ -27,5 +27,5 @@ class BaseGeometry:
         if value <= 0:
             raise ValueError(f"{name} must be greater than 0")
 
-    def __dir__(self):
-        return [attr for attr in dir(type(self)) if attr != '__init_subclass__']
+    # def __dir__(self):
+    #     return [attr for attr in dir(type(self)) if attr != '__init_subclass__']
