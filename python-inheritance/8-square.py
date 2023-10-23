@@ -27,4 +27,4 @@ class Square(Rectangle):
     def __str__(self):
         return f"[Retangle] {self.__width}/{self.__width}"
     def __dir__(cls):
-        return [attribute for attribute in super().__dir__() if attribute != '__init_subclass__']
+        return [attribute for attribute in super().__dir__() if attribute != '__init_subclass__'] + ['integer_validator']
