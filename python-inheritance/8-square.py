@@ -31,6 +31,6 @@ class Square(Rectangle):
         return [attribute for attribute in super().__dir() if attribute != '__init_subclass__']
 
 if __name__ == "__main__":
-    s = Square(4)
-    print(s)
-    print(issubclass(Square, Rectangle))
+    attributes = dir(Square)
+    for attr in attributes:
+        print(attr)
