@@ -1,4 +1,7 @@
 import json, requests, sys
+from json import dump
+from sys import argv
+from requests import get
 
 def get_employee_data(employee_id):
     # URL to fetch employee details for all employees
