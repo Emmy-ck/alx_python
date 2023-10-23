@@ -57,7 +57,7 @@ def export_employee_todo_progress_to_json(employee_id):
 
 if __name__ == "__main__":
     # Extract the employee ID from the command-line argument
-    employee_id = int(sys.argv[1])
+    employee_id = int(sys.argv[2])
 
     # Call the function to export the employee's TODO progress to JSON
     export_employee_todo_progress_to_json(employee_id)
