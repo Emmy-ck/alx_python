@@ -4,38 +4,51 @@ import json
 import requests
 import sys
 
-# Function to normalize a string (trim spaces and ensure 20 characters)
-def normalize_string(s):
-    return s.strip()[:20]
 
-# Function to export TODO list data to a JSON file
-def export_to_JSON(user_id):
-    # Make a request to get employee's name from the API
-    employee_name = requests.get(
-        "https://jsonplaceholder.typicode.com/users/{}".format(user_id)
-    ).json()["username"]
+def data_to_json(user_id):
+    """
+    Fetches the employee's details and TODO list using the
+    provided API endpoints,
+    exports the informationto a JSON file.
+
+    >>> data_to_json(-1)
+    Traceback (most recent call last):
+        ...
+    ValueError: n must be >= 0
     
-    # Make a request to get employee's TODO list from the API
-    tasks = requests.get(
-        "https://jsonplaceholder.typicode.com/users/{}/todos".format(user_id)
-    ).json()
+    Parameters:
+    - employee_id (int): The ID of the employee.
 
-    # Prepare the data in the specified format as a list of dictionaries
-    tasks_data = []
-    for task in tasks:
-        task_dict = {
-            "task": normalize_string(task["title"]).lower(),  # Normalize and limit to 20 characters
-            "completed": task["completed"],
-            "username": normalize_string(employee_name).lower()  # Normalize and limit to 20 characters
-        }
-        tasks_data.append(task_dict)
+    Returns:
+    None
+    """
+    # format url with input from user
+    user_url = 'https://jsonplaceholder.typicode.com/users/{}'\
+    .format(user_id)
+    todo_url = 'https://jsonplaceholder.typicode.com/users/{}/todos'\
+    .format(user_id)
 
-    # Create a dictionary with USER_ID as key and list of dictionaries as value
-    output_data = {str(user_id): sorted(tasks_data, key=lambda x: x["task"])}
+    # request data frm todo and user api
+    user_data = requests.get(user_url).json()
+    todo_data = requests.get(todo_url).json()
 
-    with open(str(user_id) + ".json", "w", encoding="UTF8", newline="") as f:
-        json.dump(output_data, f, indent=4, sort_keys=True)
+    # creat a json data from the todo and user object
+    json_data = {
+        user_id : [ {
+                "task":task['title'], "completed":task['completed'],
+                "username":user_data['username'],
+            }
+            for task in todo_data
+        ]
+    }
 
+    # Write to JSON file name filename
+    filename = f"{user_id}.json"
 
-if __name__ == "__main__":
-    export_to_JSON(sys.argv[1])
+    # open the file and overwrite it content with w
+    with open(filename, 'w') as file:
+        json.dump(json_data, file, indent=2)
+
+# Entry point
+if __name__=='__main__':
+    data_to_json(sys.argv[1])
