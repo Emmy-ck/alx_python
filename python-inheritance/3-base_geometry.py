@@ -3,12 +3,12 @@ Empty class definition for BaseGeometry.
 """
 
 
-class BaseGeometry:
-    """
-    Empty class representing the base geometry.
-    """
-    def __init_subclass__(cls):
-        pass
+class metaGeometry(type):
+    def __dir__(cls):
+        return [attribute for attribute in super().__dir__() if attribute != '__init_subclass__']
 
-    def __dir__(self):
-        return [attr for attr in dir(self) if attr != '__init_subclass__']
+    """This is an empty class"""
+class BaseGeometry(metaclass=metaGeometry):
+    """This class is empty"""
+    def __dir__(cls):
+        return [attribute for attribute in super().__dir__() if attribute != '__init_subclass__']
