@@ -24,8 +24,9 @@ if __name__ == "__main__":
         cursor = db.cursor()
 
         query = ("SELECT cities.id, cities.name, "
-                "states.name FROM cities LEFT JOIN states ON states.id = cities.state_id "
-                "ORDER BY cities.id ASC")
+                    "states.name FROM cities LEFT JOIN states ON "
+                    "states.id = cities.state_id "
+                    "ORDER BY cities.id ASC")
         cursor.execute(query)
 
         # Fetch all rows as list if tuples

@@ -38,8 +38,8 @@ def search_states(username, password, database, state_name):
 
 if __name__ == "__main__":
     if len(sys.argv) != 5:
-        print(
-            "Usage:Python script.py <username> <password> <database> <state_name>")
+        print("Usage: Python script.py "
+              "<username> <password> <database> <state_name>")
     else:
         username, password, database, state_name = sys.argv[1:5]
         search_states(username, password, database, state_name)
