@@ -1,50 +1,41 @@
 """This program fetches employee data and exports it to both CSV and JSON format
 """
-import json  # Import the json module
+import json
 import requests
 import sys
 
-def main():
-    employee_id = sys.argv[1]
+# Function to normalize a string (trim spaces and ensure 20 characters)
+def normalize_string(s):
+    return s.strip()[:20]
 
-    # Employee data
-    employee_url = f'https://jsonplaceholder.typicode.com/users/{employee_id}'
-    employee_response = requests.get(employee_url)
-    if employee_response.status_code != 200:
-        print(f"Employee with ID {employee_id} not found.")
-        return
-    employee_data = employee_response.json()
+# Function to export TODO list data to a JSON file
+def export_to_JSON(user_id):
+    # Make a request to get employee's name from the API
+    employee_name = requests.get(
+        "https://jsonplaceholder.typicode.com/users/{}".format(user_id)
+    ).json()["username"]
+    
+    # Make a request to get employee's TODO list from the API
+    tasks = requests.get(
+        "https://jsonplaceholder.typicode.com/users/{}/todos".format(user_id)
+    ).json()
 
-    # Fetching todos data
-    todos_url = f'https://jsonplaceholder.typicode.com/users/{employee_id}/todos'
-    todos_response = requests.get(todos_url)
-    if todos_response.status_code != 200:
-        print(f"Failed to fetch todos for user {employee_data['name']}.")
-        return
-    todos_data = todos_response.json()
-
-    # Creating a list to store task records
-    task_records = []
-
-    for task in todos_data:
-        task_record = {
-            "task": task['title'],
-            "completed": task['completed'],
-            "username": employee_data['username']
+    # Prepare the data in the specified format as a list of dictionaries
+    tasks_data = []
+    for task in tasks:
+        task_dict = {
+            "task": normalize_string(task["title"]).lower(),  # Normalize and limit to 20 characters
+            "completed": task["completed"],
+            "username": normalize_string(employee_name).lower()  # Normalize and limit to 20 characters
         }
-        task_records.append(task_record)
+        tasks_data.append(task_dict)
 
-    # Creating a dictionary with the user ID as the key and the list of task records as the value
-    export_data = {
-        employee_id: task_records
-    }
+    # Create a dictionary with USER_ID as key and list of dictionaries as value
+    output_data = {str(user_id): sorted(tasks_data, key=lambda x: x["task"])}
 
-    # Exporting to JSON file
-    json_file = f"{employee_id}.json"
-    with open(json_file, 'w') as jsonfile:
-        json.dump(export_data, jsonfile, indent=4)  # Use json.dump to write data in JSON format
+    with open(str(user_id) + ".json", "w", encoding="UTF8", newline="") as f:
+        json.dump(output_data, f, indent=4, sort_keys=True)
 
-    print(f"Data exported to {json_file}.")
 
-if __name__ == "__main":
-    main()
+if __name__ == "__main__":
+    export_to_JSON(sys.argv[1])
