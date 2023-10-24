@@ -13,10 +13,10 @@ class Rectangle(BaseGeometry):
     """
 
     def __init__(self, width, height):
+        super().integer_validator("width", width)
+        super().integer_validator("height", height)
         self.__width = width
         self.__height = height
-        self.integer_validator("width", self.__width)
-        self.integer_validator("height", self.__height)
 
     def area(self):
         """
@@ -29,3 +29,7 @@ class Rectangle(BaseGeometry):
 
     def __str__(self):
         return f"[Rectangle] {self.__width}/{self.__height}"
+    
+    # Removing the __init_subclass__ method from default method
+    def __dir__(self):
+        return [attribute for attribute in super().__dir__() if attribute != "__init_subclass__"]
