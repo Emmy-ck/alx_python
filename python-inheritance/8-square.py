@@ -11,11 +11,13 @@ class Square(Rectangle):
         size (int): The side length of the square.
     """
     def __init__(self, size):
-        if not isinstance(size, int):
-            raise TypeError("size must be an integer")
+        # if not isinstance(size, int):
+        #     raise TypeError("size must be an integer")
 
-        super().__init__(size, size)  # Call the constructor of the base class (Rectangle)
-        self.__width = size # set private width attribute
+        super().integer_validator("size", size)  # Call the constructor of the base class (Rectangle)
+        self.__size = size # set private size attribute
+        Square = 0
+
     def area(self):
         """
         Calculate and return the area of the square.
@@ -23,9 +25,13 @@ class Square(Rectangle):
         Returns:
             int: The area of the square.
         """
-        return self.__width * self.__width  # Since it's a square, width and height are the same
+        return self.__size ** 2  # Since it's a square, width and height are the same
     def __str__(self):
-        return f"[Square] {self.__width}/{self.__height}"
+        return Square.area
+    
+    def __dir__(cls):
+        return [attribute for attribute in super().__dir__()
+                if attribute != "__init_subclass__"]
     # def __dir__(self):
     #     # Exclude '__init_subclass__' from the list of attributes
     #     return [attribute for attribute in super().__dir() if attribute != '__init_subclass__']
