@@ -1,6 +1,16 @@
 """Class BaseGeometry with two public instance classes
 """
-class BaseGeometry:
+class metaGeometry(type):
+    """
+    Base geometry class
+    """
+    def __dir__(cls):
+        return [attribute for attribute in super().__dir__() if attribute != '__init_subclass__']
+class BaseGeometry(metaclass=metaGeometry):
+    """Empty class
+    """
+    def __dir__(cls):
+        return [attribute for attribute in super().__dir__() if attribute != '__init_subclass__']
     """
     Public instance method to calculate the area of the geometry.
 
@@ -27,5 +37,5 @@ class BaseGeometry:
         if value <= 0:
             raise ValueError(f"{name} must be greater than 0")
 
-    def __dir__(self):
-        return [attr for attr in dir(type(self)) if attr != '__init_subclass__']
+    # def __dir__(self):
+    #     return [attr for attr in dir(type(self)) if attr != '__init_subclass__']
