@@ -34,11 +34,11 @@ def list_cities(username, password, database, state_name):
         cursor.execute(query, (state_name,))
         # Fetch all rows as list if tuples
         rows = cursor.fetchall()
-        
+
         # Extract city names and join them
         city_names = [row[0] for row in rows]
         cities_string = ", ".join(city_names)
-        
+
         # Print the results without IDs or state names
         print(cities_string)
 
