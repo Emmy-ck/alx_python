@@ -1,54 +1,50 @@
 """This program fetches employee data and exports it to both CSV and JSON format
 """
-import json
+import json  # Import the json module
 import requests
 import sys
 
+def main():
+    employee_id = sys.argv[1]
 
-def data_to_json(user_id):
-    """
-    Fetches the employee's details and TODO list using the
-    provided API endpoints,
-    exports the informationto a JSON file.
+    # Employee data
+    employee_url = f'https://jsonplaceholder.typicode.com/users/{employee_id}'
+    employee_response = requests.get(employee_url)
+    if employee_response.status_code != 200:
+        print(f"Employee with ID {employee_id} not found.")
+        return
+    employee_data = employee_response.json()
 
-    >>> data_to_json(-1)
-    Traceback (most recent call last):
-        ...
-    ValueError: n must be >= 0
-    
-    Parameters:
-    - employee_id (int): The ID of the employee.
+    # Fetching todos data
+    todos_url = f'https://jsonplaceholder.typicode.com/users/{employee_id}/todos'
+    todos_response = requests.get(todos_url)
+    if todos_response.status_code != 200:
+        print(f"Failed to fetch todos for user {employee_data['name']}.")
+        return
+    todos_data = todos_response.json()
 
-    Returns:
-    None
-    """
-    # format url with input from user
-    user_url = 'https://jsonplaceholder.typicode.com/users/{}'\
-    .format(user_id)
-    todo_url = 'https://jsonplaceholder.typicode.com/users/{}/todos'\
-    .format(user_id)
+    # Creating a list to store task records
+    task_records = []
 
-    # request data frm todo and user api
-    user_data = requests.get(user_url).json()
-    todo_data = requests.get(todo_url).json()
+    for task in todos_data:
+        task_record = {
+            "task": task['title'],
+            "completed": task['completed'],
+            "username": employee_data['username']
+        }
+        task_records.append(task_record)
 
-    # creat a json data from the todo and user object
-    json_data = {
-        user_id : [ {
-                "task":task['title'], "completed":task['completed'],
-                "username":user_data['username'],
-            }
-            for task in todo_data
-        ]
+    # Creating a dictionary with the user ID as the key and the list of task records as the value
+    export_data = {
+        employee_id: task_records
     }
 
-    # Write to JSON file name filename
-    filename = f"{user_id}.json"
+    # Exporting to JSON file
+    json_file = f"{employee_id}.json"
+    with open(json_file, 'w') as jsonfile:
+        json.dump(export_data, jsonfile, indent=4)  # Use json.dump to write data in JSON format
 
-    # open the and overwrite it content with w
-    with open(filename, 'w') as file:
-        json.dump(json_data, file, indent=2)
+    print(f"Data exported to {json_file}.")
 
-# Entry point
-if __name__=='__main__':
-    data_to_json(sys.argv[1])
+if __name__ == "__main":
+    main()
