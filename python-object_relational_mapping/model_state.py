@@ -12,6 +12,10 @@ Base = declarative_base()
 class State(Base):
     """
     Class that represents the states table in the database
+    
+    Attributes:
+        id(int): idetity number of each state, unique
+        name(str): name of each state
     """
 
     __tablename__ = 'states'
