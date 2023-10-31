@@ -4,6 +4,7 @@ Lists State objects that with letter 'a' from database hbtn_0e_6_usa
 
 import sys
 from sqlalchemy import create_engine
+import sqlalchemy.orm
 from sqlalchemy.orm import sessionmaker
 from model_state import Base, State
 
