@@ -12,10 +12,14 @@ if __name__ == "__main__":
     if len(sys.argv) != 4:
         print("Usage: {} <username> <password> <database>".format(sys.argv[0]))
         sys.exit(1)
-
+        
+    username = sys.argv[1]
+    password = sys.argv[2]
+    database = sys.argv[3]
+    port = 3306
+    
     # Create a connection to the MySQL database
-    engine = create_engine('mysql+mysqldb://{}:{}@localhost:3306/{}'.format(
-        sys.argv[1], sys.argv[2], sys.argv[3]), pool_pre_ping=True)
+    engine = create_engine(f'mysql+mysqldb://{username}:{password}@localhost:{port}/{database}')
 
     # Create a session
     Session = sessionmaker(bind=engine)
