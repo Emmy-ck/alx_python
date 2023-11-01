@@ -1,9 +1,11 @@
 """List all state objects from the database
 """
-import sys
+
+from model_state import Base, State
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from model_state import Base, State
+import sys
+
 
 if __name__ == "__main__":
     # Check if the correct number of arguments are provided
