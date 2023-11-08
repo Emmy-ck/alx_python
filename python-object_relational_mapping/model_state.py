@@ -12,7 +12,7 @@ Base = declarative_base()
 class State(Base):
     """
     Class that represents the states table in the database
-    
+
     Attributes:
         id(int): idetity number of each state, unique
         name(str): name of each state
@@ -22,4 +22,3 @@ class State(Base):
 
     id = Column(Integer, primary_key=True, autoincrement=True, nullable=False)
     name = Column(String(128), nullable=False)
-
